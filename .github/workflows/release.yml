@@ -12,6 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Set env
+      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -19,7 +21,10 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -r win-x64 /p:PublishReadyToRun=false /p:TieredCompilation=false --self-contained
     - name: Zip
-      run: zip -r release.zip bin/Release/net6.0/win-x64/publish/
+      run: |
+            echo $RELEASE_VERSION
+            cp -r release.zip bin/Release/net6.0/win-x64/publish/ publish
+            zip -r publish/
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
@@ -28,4 +33,4 @@ jobs:
         asset_name: release.zip
         tag: ${{ github.ref }}
         overwrite: true
-        body: "This is my release text"
+        body: "Please enjoy release $RELEASE_VERSION"
