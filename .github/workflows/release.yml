@@ -23,7 +23,7 @@ jobs:
     - name: Zip
       run: |
             echo $RELEASE_VERSION
-            cp -r release.zip bin/Release/net6.0/win-x64/publish/ .
+            cp -r bin/Release/net6.0/win-x64/publish/ .
             zip -r publish/
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
