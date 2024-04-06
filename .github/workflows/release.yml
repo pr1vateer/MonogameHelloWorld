@@ -22,9 +22,8 @@ jobs:
       run: dotnet publish -c Release -r win-x64 /p:PublishReadyToRun=false /p:TieredCompilation=false --self-contained
     - name: Zip
       run: |
-            echo $RELEASE_VERSION
             cp -r bin/Release/net6.0/win-x64/publish/ .
-            zip -r publish.zip publish/
+            zip -r release.zip publish/
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
