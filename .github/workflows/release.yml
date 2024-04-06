@@ -24,6 +24,7 @@ jobs:
       run: |
             cp -r bin/Release/net6.0/win-x64/publish/ .
             zip -r release.zip publish/
+            md5sum release.zip
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
