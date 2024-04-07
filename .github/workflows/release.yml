@@ -33,4 +33,4 @@ jobs:
         asset_name: MonogameHelloWorld.zip
         tag: ${{ github.ref }}
         overwrite: true
-        body: "Please enjoy release ${{ steps.read_release.outputs.RELEASE_VERSION }}"
+        body: "Please enjoy release ${{ RELEASE_VERSION }}"

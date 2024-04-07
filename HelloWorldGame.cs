@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -45,9 +46,10 @@ public class HelloWorldGame : Game
         GraphicsDevice.Clear(Color.Beige);
 
         // TODO: Add your drawing code here
-
+        var time = DateTime.Now.ToString("HH:mm:ss");
         _spriteBatch.Begin();
         _spriteBatch.DrawString(_font, "Hello, World!", new Vector2(100, 100), Color.Black);
+        _spriteBatch.DrawString(_font, time, new Vector2(100, 150), Color.Black);
         _spriteBatch.End();
 
         base.Draw(gameTime);
